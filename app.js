@@ -26,48 +26,35 @@ function getHumanChoice() {
     return humanChoice;
 }
 
-/*
-Capitalizes the first letter of a string.
-*/
+
 function capitalizeFirstLetter(val) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
 
 
-/*
-Plays a game of rock, paper, scissors. The function will play five rounds of rock, paper, scissors. The function will increment the human's score if the human wins, the computer's score if the computer wins, or neither score if it's a tie. The function will then determine the winner of the game based on the scores.
-*/
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
-
-    /*
-    Plays a round of rock, paper, scissors. The function will increment the human's score if the human wins, the computer's score if the computer wins, or neither score if it's a tie.
-    */
-    function playRound() {
-        const humanChoice = getHumanChoice();
-        const computerChoice = getComputerChoice();
-        if (humanChoice === computerChoice) {
-            console.log('It\'s a tie!');
-        } else if (humanChoice === 'rock' && computerChoice === 'scissors' || humanChoice === 'paper' && computerChoice === 'rock' || humanChoice === 'scissors' && computerChoice === 'paper') {
-            humanScore++;
-            console.log('You win! ' + capitalizeFirstLetter(humanChoice) + ' beats ' + computerChoice + '.');
-        } else {
-            computerScore++;
-            console.log('You lose! ' + capitalizeFirstLetter(computerChoice) + ' beats ' + humanChoice + '.');
-        }
-    }
-
-    for (let i = 0; i < 5; i++) {
-        playRound();
-    }
-
-    if (humanScore > computerScore) {
-        console.log('You win the game!');
-    } else if (humanScore < computerScore) {
-        console.log('You lose the game!');
-    
+function playRound(humanChoice) {
+    const computerChoice = getComputerChoice();
+    if (humanChoice === computerChoice) {
+        console.log('It\'s a tie!');
+    } else if (humanChoice === 'rock' && computerChoice === 'scissors' || humanChoice === 'paper' && computerChoice === 'rock' || humanChoice === 'scissors' && computerChoice === 'paper') {
+        console.log('You win! ' + capitalizeFirstLetter(humanChoice) + ' beats ' + computerChoice + '.');
     } else {
-        console.log('The game is a tie!');
+        console.log('You lose! ' + capitalizeFirstLetter(computerChoice) + ' beats ' + humanChoice + '.');
     }
 }
+
+
+function alertFunction() {
+    alert("YAY! YOU DID IT!");
+  }
+const btn = document.querySelector("#btn");
+btn.addEventListener("click", alertFunction);
+
+
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+
+rock.addEventListener("click", () => playRound("rock"));
+paper.addEventListener("click", () => playRound("paper"));
+scissors.addEventListener("click", () => playRound("scissors"));
