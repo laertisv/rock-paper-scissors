@@ -1,8 +1,3 @@
-
-
-/*
-Gets the computer's choice via a random number
-*/
 function getComputerChoice() {
     const randomNumber = Math.floor(Math.random() * 3);
     switch (randomNumber) {
@@ -15,21 +10,13 @@ function getComputerChoice() {
     }
 }
 
-/*
-Gets the human's choice via a prompt. If the human enters an invalid choice, the function will prompt the human to enter a valid choice.
-*/
-function getHumanChoice() {
-    let humanChoice = prompt('Please choose rock, paper, or scissors.').toLowerCase(); // Converts the human's choice to lowercase, so the function can validate the choice regardless of case.
-    while (humanChoice !== 'rock' && humanChoice !== 'paper' && humanChoice !== 'scissors') {
-        humanChoice = prompt('Invalid choice. Please choose rock, paper, or scissors.').toLowerCase();
-    } // The while loop will continue to prompt the human to enter a valid choice until the human enters a valid choice.
-    return humanChoice;
-}
-
 
 function capitalizeFirstLetter(val) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
+
+let humanScore = 0;
+let computerScore = 0;
 
 
 function playRound(humanChoice) {
@@ -38,11 +25,22 @@ function playRound(humanChoice) {
     const resultItem = document.createElement('li');
     const resultText = document.createElement('span');
     if (humanChoice === computerChoice) {
-        myResult = 'It\'s a tie!';
+        myResult = 'It\'s a tie! You have ' + humanScore + ' points and the computer has ' + computerScore + ' points.' ;
     } else if (humanChoice === 'rock' && computerChoice === 'scissors' || humanChoice === 'paper' && computerChoice === 'rock' || humanChoice === 'scissors' && computerChoice === 'paper') {
-        myResult = 'You win! ' + capitalizeFirstLetter(humanChoice) + ' beats ' + computerChoice + '.';
+        humanScore++
+        myResult = 'You win! ' + capitalizeFirstLetter(humanChoice) + ' beats ' + computerChoice + '. You have ' + humanScore + ' points and the computer has ' + computerScore + ' points.' ;
     } else {
-        myResult = 'You lose! ' + capitalizeFirstLetter(computerChoice) + ' beats ' + humanChoice + '.';
+        computerScore ++
+        myResult = 'You lose! ' + capitalizeFirstLetter(computerChoice) + ' beats ' + humanChoice + '. You have ' + humanScore + ' points and the computer has ' + computerScore + ' points.' ;
+    }
+    if (humanScore === 5) {
+        myResult += ' You win the Game! You can start a new game now.'
+        humanScore = 0;
+        computerScore = 0;
+    } else if (computerScore === 5) {
+            myResult += ' You lose the Game! You can start a new game now.'
+            humanScore = 0;
+            computerScore = 0;
     }
     resultItem.appendChild(resultText);
     resultText.textContent = myResult;
