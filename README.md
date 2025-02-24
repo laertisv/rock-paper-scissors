@@ -1,1 +1,1 @@
-A simple rock-paper-scissors game played through the console.
+A simple rock-paper-scissors game played through a UI.
