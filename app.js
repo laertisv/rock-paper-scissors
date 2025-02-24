@@ -34,21 +34,22 @@ function capitalizeFirstLetter(val) {
 
 function playRound(humanChoice) {
     const computerChoice = getComputerChoice();
+    const results = document.querySelector('ul');
+    const resultItem = document.createElement('li');
+    const resultText = document.createElement('span');
     if (humanChoice === computerChoice) {
-        console.log('It\'s a tie!');
+        myResult = 'It\'s a tie!';
     } else if (humanChoice === 'rock' && computerChoice === 'scissors' || humanChoice === 'paper' && computerChoice === 'rock' || humanChoice === 'scissors' && computerChoice === 'paper') {
-        console.log('You win! ' + capitalizeFirstLetter(humanChoice) + ' beats ' + computerChoice + '.');
+        myResult = 'You win! ' + capitalizeFirstLetter(humanChoice) + ' beats ' + computerChoice + '.';
     } else {
-        console.log('You lose! ' + capitalizeFirstLetter(computerChoice) + ' beats ' + humanChoice + '.');
+        myResult = 'You lose! ' + capitalizeFirstLetter(computerChoice) + ' beats ' + humanChoice + '.';
     }
+    resultItem.appendChild(resultText);
+    resultText.textContent = myResult;
+    results.appendChild(resultItem);
 }
 
 
-function alertFunction() {
-    alert("YAY! YOU DID IT!");
-  }
-const btn = document.querySelector("#btn");
-btn.addEventListener("click", alertFunction);
 
 
 const rock = document.querySelector("#rock");
